@@ -1,0 +1,769 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Part C Ayurveda — NEET PA Crash Course</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d2e;
+    --accent: #f59e0b;
+    --green: #10b981;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #2d3748;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; line-height: 1.6; }
+
+  header { background: linear-gradient(135deg, #1a1d2e 0%, #2d1b69 100%); padding: 20px 16px; text-align: center; border-bottom: 2px solid var(--accent); }
+  header h1 { font-size: 1.5rem; color: var(--accent); }
+  header p { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+  .badge { display: inline-block; background: var(--green); color: #000; font-weight: bold; padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; margin-top: 6px; }
+
+  nav { display: flex; overflow-x: auto; gap: 8px; padding: 12px 16px; background: var(--card); border-bottom: 1px solid var(--border); }
+  nav button { flex-shrink: 0; padding: 8px 16px; border: 1px solid var(--border); border-radius: 20px; background: var(--bg); color: var(--muted); cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+  nav button.active, nav button:hover { background: var(--accent); color: #000; border-color: var(--accent); font-weight: bold; }
+
+  .tab-content { display: none; padding: 16px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .card h2 { color: var(--accent); font-size: 1.1rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .card h3 { color: var(--blue); font-size: 0.95rem; margin: 12px 0 6px; }
+
+  .trick-box { background: #1c2a1c; border: 1px solid var(--green); border-radius: 8px; padding: 12px; margin: 10px 0; }
+  .trick-box .label { font-size: 0.75rem; color: var(--green); font-weight: bold; letter-spacing: 1px; margin-bottom: 4px; }
+  .trick-box p { font-size: 0.92rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 10px 0; }
+  th { background: #2d1b69; color: var(--accent); padding: 8px 10px; text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: #1e2035; }
+
+  .highlight { color: var(--accent); font-weight: bold; }
+  .green { color: var(--green); font-weight: bold; }
+  .red { color: var(--red); }
+  .blue { color: var(--blue); }
+  .purple { color: var(--purple); }
+
+  /* MCQ styles */
+  .mcq-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .mcq-card .qnum { font-size: 0.75rem; color: var(--muted); margin-bottom: 6px; }
+  .mcq-card .question { font-size: 0.95rem; margin-bottom: 12px; font-weight: 500; }
+  .options { display: flex; flex-direction: column; gap: 8px; }
+  .opt-btn { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); cursor: pointer; text-align: left; font-size: 0.88rem; transition: all 0.2s; }
+  .opt-btn:hover { border-color: var(--blue); background: #1e2035; }
+  .opt-btn.correct { background: #0d2b1a; border-color: var(--green); color: var(--green); }
+  .opt-btn.wrong { background: #2b0d0d; border-color: var(--red); color: var(--red); }
+  .opt-btn.reveal-correct { background: #0d2b1a; border-color: var(--green); color: var(--green); }
+  .explanation { display: none; margin-top: 10px; padding: 10px; background: #1c1f35; border-radius: 8px; font-size: 0.85rem; color: var(--muted); border-left: 3px solid var(--accent); }
+  .explanation.show { display: block; }
+
+  .score-bar { background: var(--bg); border: 1px solid var(--border); border-radius: 20px; height: 12px; margin: 8px 0; overflow: hidden; }
+  .score-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--accent)); border-radius: 20px; transition: width 0.5s; }
+
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat-box { flex: 1; min-width: 100px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 10px; text-align: center; }
+  .stat-box .val { font-size: 1.6rem; font-weight: bold; color: var(--accent); }
+  .stat-box .lbl { font-size: 0.75rem; color: var(--muted); }
+
+  ul { padding-left: 20px; }
+  ul li { margin-bottom: 4px; font-size: 0.9rem; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  .ratta { background: #1a1430; border: 1px solid var(--purple); border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 0.9rem; }
+  .ratta .label { color: var(--purple); font-weight: bold; font-size: 0.75rem; margin-bottom: 4px; }
+
+  #score-display { font-size: 1.2rem; font-weight: bold; color: var(--accent); text-align: center; padding: 12px; }
+  .reset-btn { display: block; margin: 0 auto; padding: 10px 24px; background: var(--purple); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌿 Part C — Ayurveda NEET PA Crash Course</h1>
+  <p>20 Questions | Maximum Marks: 20 | No Negative Marking</p>
+  <span class="badge">🎯 Target: 16–18/20</span>
+</header>
+
+<nav>
+  <button class="active" onclick="showTab('overview')">📋 Overview</button>
+  <button onclick="showTab('section1')">🔵 S1: History</button>
+  <button onclick="showTab('section2')">🟡 S2: Principles</button>
+  <button onclick="showTab('section3')">🟢 S3: Health</button>
+  <button onclick="showTab('section4')">🔴 S4: Disease</button>
+  <button onclick="showTab('section5')">🟣 S5: Institutions</button>
+  <button onclick="showTab('mcq')">✏️ Practice MCQs</button>
+</nav>
+
+<!-- OVERVIEW -->
+<div id="overview" class="tab-content active">
+  <div class="stats">
+    <div class="stat-box"><div class="val">20</div><div class="lbl">Questions</div></div>
+    <div class="stat-box"><div class="val">20</div><div class="lbl">Max Marks</div></div>
+    <div class="stat-box"><div class="val">0</div><div class="lbl">Negative Marks</div></div>
+    <div class="stat-box"><div class="val">5</div><div class="lbl">Sections</div></div>
+  </div>
+
+  <div class="card">
+    <h2>📌 Syllabus Map — Part C Ayurveda</h2>
+    <table>
+      <tr><th>Section</th><th>Topic</th><th>Expected Qs</th></tr>
+      <tr><td class="blue">Section 1</td><td>Historical Perspective of Ayurveda</td><td class="green">4–5 Qs</td></tr>
+      <tr><td class="highlight">Section 2</td><td>Fundamental Principles</td><td class="green">5–6 Qs</td></tr>
+      <tr><td class="green">Section 3</td><td>Health, Lifestyle & Diet</td><td class="green">3–4 Qs</td></tr>
+      <tr><td class="red">Section 4</td><td>Disease, Diagnosis & Treatment</td><td class="green">3–4 Qs</td></tr>
+      <tr><td class="purple">Section 5</td><td>Institutions & Examinations</td><td class="green">2–3 Qs</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🚀 7-Day Strategy</h2>
+    <table>
+      <tr><th>Day</th><th>Focus</th></tr>
+      <tr><td>Day 1-2 (Oct 10-11)</td><td>Part C Complete — Sections 1+2</td></tr>
+      <tr><td>Day 3 (Oct 12)</td><td>Part C — Sections 3+4+5 + MCQ practice</td></tr>
+      <tr><td>Day 4-5 (Oct 13-14)</td><td>Part B Science — Biology focus</td></tr>
+      <tr><td>Day 6 (Oct 15)</td><td>Part B Science — Physics + Chemistry</td></tr>
+      <tr><td>Day 7 (Oct 16)</td><td>Full Revision + Mock Test</td></tr>
+    </table>
+    <div class="trick-box" style="margin-top:12px;">
+      <div class="label">💡 QUALIFY FORMULA</div>
+      <p>Part C: 16+ marks &nbsp;|&nbsp; Part B Science Bio: 15+ marks &nbsp;|&nbsp; Part A Sanskrit GK: 10+ marks<br>
+      = <strong class="green">41 marks from non-Sanskrit</strong> + attempt all = 60+ easily!</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: HISTORY -->
+<div id="section1" class="tab-content">
+  <div class="card">
+    <h2>🔵 Section 1: Historical Perspective of Ayurveda</h2>
+
+    <h3>📖 Definition of Ayurveda</h3>
+    <div class="ratta">
+      <div class="label">📝 ORIGINAL SHLOKA (Charaka Samhita)</div>
+      <p><em>"Hitahitam sukham duhkhayustasya hitahitam,<br>
+      maanam cha taccha yatroktam Āyurvedah sa uchyate"</em></p>
+      <p style="margin-top:6px; color: var(--muted)">That which tells us about good life (hita), bad life (ahita), happy life (sukha), unhappy life (duhkha), and their measures — that is Ayurveda.</p>
+    </div>
+
+    <div class="trick-box">
+      <div class="label">🧠 MEMORY TRICK</div>
+      <p><strong class="highlight">AYURVEDA = ĀYU + VEDA</strong><br>
+      Āyu = Life | Veda = Knowledge/Science<br>
+      → "Science of Life"</p>
+    </div>
+
+    <h3>🔢 Āyu (Life) = 4 Components</h3>
+    <div class="ratta">
+      <div class="label">📝 RATTA TRICK: "SISA"</div>
+      <p><strong class="highlight">S</strong>harira (Body) + <strong class="highlight">I</strong>ndriya (Sense Organs) + <strong class="highlight">S</strong>attva (Mind) + <strong class="highlight">A</strong>tma (Soul) = ĀYU</p>
+    </div>
+
+    <h3>📛 4 Synonyms of Āyu</h3>
+    <div class="ratta">
+      <div class="label">📝 RATTA TRICK: "DJNA"</div>
+      <p><strong class="highlight">D</strong>hāri + <strong class="highlight">J</strong>īvita + <strong class="highlight">N</strong>ityaga + <strong class="highlight">A</strong>nubandha</p>
+      <p style="color:var(--muted); font-size:0.85rem; margin-top:4px;">Dhāri = sustainer | Jīvita = living | Nityaga = ever-moving | Anubandha = continuity</p>
+    </div>
+
+    <h3>🏆 3 Principal Acharyas (BrihatTrayi authors)</h3>
+    <table>
+      <tr><th>Acharya</th><th>Place</th><th>Work</th><th>Known As</th></tr>
+      <tr><td class="green">Charaka</td><td>Kashmir</td><td>Charaka Samhita</td><td>Royal physician of King Kanishka; revised AgniveshaTantra</td></tr>
+      <tr><td class="highlight">Sushruta</td><td>Kashi (Varanasi)</td><td>Sushruta Samhita</td><td><strong>Father of Surgery</strong></td></tr>
+      <tr><td class="blue">Vagbhata</td><td>Sindhu (Sind)</td><td>AshtangaSangraha + AshtangaHridaya</td><td>Wrote 2 books</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 MEMORY TRICK: "CSV" = Charaka-Sushruta-Vagbhata</div>
+      <p><strong>C</strong>haraka = <strong>C</strong>haraka Samhita | <strong>S</strong>ushruta = <strong>S</strong>urgery (Father) | <strong>V</strong>agbhata = <strong>V</strong>ery 2 books</p>
+    </div>
+
+    <h3>📚 BrihatTrayi (Greater Triad)</h3>
+    <div class="ratta">
+      <div class="label">📝 RATTA: 3 GREAT BOOKS</div>
+      <p>1. <strong class="green">Charaka Samhita</strong> — by Charaka<br>
+      2. <strong class="highlight">Sushruta Samhita</strong> — by Sushruta<br>
+      3. <strong class="blue">AshtangaHridaya</strong> — by Vagbhata</p>
+      <p style="margin-top:6px; color:var(--muted); font-size:0.85rem;">BrihatTrayi = "Greater Three" — most important Ayurvedic texts</p>
+    </div>
+
+    <h3>📘 LaghuTrayi (Lesser Triad)</h3>
+    <table>
+      <tr><th>Book</th><th>Author</th></tr>
+      <tr><td class="green">MadhavaNidana</td><td>Madhavakara</td></tr>
+      <tr><td class="highlight">Bhavaprakasha</td><td>Bhavamishra</td></tr>
+      <tr><td class="blue">Sharngadhara Samhita</td><td>Sharngadhara</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "MBS" = Madhavakara-Bhavamishra-Sharngadhara</div>
+      <p><strong>M</strong>adhavaNidana-<strong>B</strong>havaprakasha-<strong>S</strong>harngadhara Samhita<br>
+      Laghu = Small/Lesser (compare: Laghu = light in Hindi)</p>
+    </div>
+
+    <h3>🎯 Quick Fire Facts</h3>
+    <ul>
+      <li>Ayurveda is an <span class="highlight">Upaveda</span> of <span class="highlight">Atharvaveda</span></li>
+      <li>Dhanvantari = <span class="highlight">God of Ayurveda</span> (deity)</li>
+      <li>AshtangaSangraha also by <span class="highlight">Vagbhata</span> (not in BrihatTrayi)</li>
+      <li>Original text before Charaka = <span class="highlight">AgniveshaTantra</span> (by Agnivesha)</li>
+      <li>Charaka's teacher = <span class="highlight">Punarvasu Atreya</span></li>
+      <li>Sushruta's teacher = <span class="highlight">Dhanvantari</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2: FUNDAMENTAL PRINCIPLES -->
+<div id="section2" class="tab-content">
+  <div class="card">
+    <h2>🟡 Section 2: Fundamental Principles</h2>
+
+    <h3>🔢 Sankhya Philosophy — 24 Tattvas</h3>
+    <div class="ratta">
+      <div class="label">📝 FORMULA: 1+1+1+5+5+5+5+1 = 24</div>
+      <p>
+        <span class="highlight">1</span> Prakriti (Primordial Matter)<br>
+        <span class="highlight">1</span> Mahat / Buddhi (Intellect)<br>
+        <span class="highlight">1</span> Ahankara (Ego)<br>
+        <span class="highlight">5</span> Tanmatras (Subtle elements: Shabda, Sparsha, Rupa, Rasa, Gandha)<br>
+        <span class="highlight">5</span> Panchamahabhutas (Gross elements)<br>
+        <span class="highlight">5</span> Jnanendriyas (Sense organs: eyes, ears, nose, tongue, skin)<br>
+        <span class="highlight">5</span> Karmendriyas (Action organs: hands, feet, speech, genitals, anus)<br>
+        <span class="highlight">1</span> Manas (Mind)<br>
+        = <strong class="green">24 Tattvas</strong>
+      </p>
+    </div>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "PMATAJTJKM"</div>
+      <p>Prakriti→Mahat→Ahankara→Tanmatra(5)→Jnaneindriya(5)→Karmendriya(5)→Manas<br>
+      <strong>Count: 3 singles + 5+5+5+5 + 0 Manas = wait...</strong><br>
+      Easy way: <strong>3 + (4×5) + 1 = 24</strong></p>
+    </div>
+
+    <h3>🌍 Panchamahabhutas (5 Great Elements)</h3>
+    <table>
+      <tr><th>Sanskrit</th><th>English</th><th>Tanmatra (sense)</th></tr>
+      <tr><td class="green">Prithvi</td><td>Earth 🌍</td><td>Gandha (smell)</td></tr>
+      <tr><td class="blue">Jala</td><td>Water 💧</td><td>Rasa (taste)</td></tr>
+      <tr><td class="highlight">Agni / Teja</td><td>Fire 🔥</td><td>Rupa (sight)</td></tr>
+      <tr><td class="muted">Vayu</td><td>Air 🌬️</td><td>Sparsha (touch)</td></tr>
+      <tr><td class="purple">Akasha</td><td>Space / Ether ✨</td><td>Shabda (sound)</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "PJAVA K" = Prithvi Jala Agni Vayu Akasha</div>
+      <p>"<strong class="highlight">P</strong>ure <strong class="highlight">J</strong>ourneys <strong class="highlight">A</strong>re <strong class="highlight">V</strong>ery <strong class="highlight">A</strong>wesome"</p>
+    </div>
+
+    <h3>⚡ Tridosha — 3 Biological Humors</h3>
+    <table>
+      <tr><th>Dosha</th><th>Elements</th><th>Main Function</th><th>Location</th></tr>
+      <tr><td class="blue">Vata</td><td>Akasha + Vayu</td><td>Movement, circulation, nervous system</td><td>Colon, bones, ears</td></tr>
+      <tr><td class="highlight">Pitta</td><td>Agni + Jala</td><td>Digestion, heat, metabolism, intelligence</td><td>Liver, small intestine, eyes</td></tr>
+      <tr><td class="green">Kapha</td><td>Prithvi + Jala</td><td>Stability, lubrication, nourishment, immunity</td><td>Chest, lungs, stomach</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: VPK Elements</div>
+      <p><strong>V</strong>ata = <strong>V</strong>ayu+<strong>A</strong>kasha (both "airy/space")<br>
+      <strong>P</strong>itta = <strong>P</strong>ure Fire (Agni main, Jala secondary)<br>
+      <strong>K</strong>apha = <strong>K</strong>aadam (mud) = Earth + Water</p>
+    </div>
+
+    <h3>👅 Shad Rasa (6 Tastes)</h3>
+    <table>
+      <tr><th>#</th><th>Rasa</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>1</td><td class="green">Madhura</td><td>Sweet</td><td>Sugar, milk</td></tr>
+      <tr><td>2</td><td class="highlight">Amla</td><td>Sour</td><td>Lemon, tamarind</td></tr>
+      <tr><td>3</td><td class="blue">Lavana</td><td>Salty</td><td>Salt</td></tr>
+      <tr><td>4</td><td class="red">Katu</td><td>Pungent/Spicy</td><td>Pepper, ginger</td></tr>
+      <tr><td>5</td><td class="purple">Tikta</td><td>Bitter</td><td>Neem, bitter gourd</td></tr>
+      <tr><td>6</td><td>Kashaya</td><td>Astringent</td><td>Unripe banana, tea</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "MALKTP K" → "Mama Aloo Leke Kaale Tikha Khaye"</div>
+      <p><strong>M</strong>adhura → <strong>A</strong>mla → <strong>L</strong>avana → <strong>K</strong>atu → <strong>T</strong>ikta → <strong>K</strong>ashaya</p>
+    </div>
+
+    <h3>🔵 Saptadhatu (7 Tissues)</h3>
+    <div class="ratta">
+      <div class="label">📝 RATTA: "Rasa Rakta Mamsa Meda Asthi Majja Shukra"</div>
+      <p>
+        1. <span class="blue">Rasa</span> = Plasma/Lymph<br>
+        2. <span class="red">Rakta</span> = Blood<br>
+        3. <span class="highlight">Mamsa</span> = Muscle<br>
+        4. <span class="green">Meda</span> = Fat/Adipose<br>
+        5. <span class="purple">Asthi</span> = Bone<br>
+        6. Majja = Bone Marrow<br>
+        7. Shukra = Reproductive tissue (semen/ovum)
+      </p>
+    </div>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "Ram Ram Mara Mara Aste Maje Shuru"</div>
+      <p><strong>Ra</strong>sa → <strong>Ra</strong>kta → <strong>Ma</strong>msa → <strong>Ma</strong>da(Meda) → <strong>As</strong>thi → Ma<strong>j</strong>ja → <strong>Shu</strong>kra</p>
+    </div>
+
+    <h3>💩 Trimala (3 Waste Products)</h3>
+    <div class="ratta">
+      <div class="label">📝 PURISHA-MUTRA-SVEDA</div>
+      <p>1. <strong>Purisha</strong> = Stool/Feces<br>
+      2. <strong>Mutra</strong> = Urine<br>
+      3. <strong>Sveda</strong> = Sweat</p>
+    </div>
+
+    <h3>🌀 Trigunas (3 Qualities of Mind)</h3>
+    <table>
+      <tr><th>Guna</th><th>Nature</th></tr>
+      <tr><td class="green">Sattva</td><td>Pure, clear, knowledge, balance</td></tr>
+      <tr><td class="highlight">Rajas</td><td>Active, passionate, desire, movement</td></tr>
+      <tr><td class="muted">Tamas</td><td>Inert, dark, ignorance, lethargy</td></tr>
+    </table>
+
+    <h3>🔥 Agni (Digestive Fire) — 4 Types</h3>
+    <table>
+      <tr><th>Type</th><th>State</th><th>Meaning</th></tr>
+      <tr><td class="green">Samagni</td><td>Balanced</td><td>Normal, ideal digestion</td></tr>
+      <tr><td class="highlight">Vishmagni</td><td>Irregular (Vata)</td><td>Sometimes strong sometimes weak</td></tr>
+      <tr><td class="red">Tikshagni</td><td>Sharp (Pitta)</td><td>Too strong, quick digestion, hunger often</td></tr>
+      <tr><td class="blue">Mandagni</td><td>Slow (Kapha)</td><td>Sluggish digestion, weight gain</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 3: HEALTH & LIFESTYLE -->
+<div id="section3" class="tab-content">
+  <div class="card">
+    <h2>🟢 Section 3: Health, Lifestyle & Diet</h2>
+
+    <h3>🏥 Definition of Health (WHO + Ayurveda)</h3>
+    <div class="ratta">
+      <div class="label">📝 AYURVEDIC DEFINITION OF HEALTH (Sushruta Samhita)</div>
+      <p><em>"Sama dosha sama agnischa sama dhatu malakriyaah,<br>
+      Prasanna atmendriya manah swastha ityabhidhiyate"</em></p>
+      <p style="margin-top:8px; color:var(--muted)">= Balanced Doshas + Balanced Agni + Balanced Dhatus + Proper elimination of Malas + Happy Soul + Happy Sense organs + Happy Mind = HEALTH</p>
+    </div>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "DADAM + 3 Happy"</div>
+      <p><strong>D</strong>osha balanced + <strong>A</strong>gni balanced + <strong>D</strong>hatu balanced + <strong>A</strong>mal(Mala) normal + <strong>M</strong>ind/Soul/Senses happy</p>
+    </div>
+
+    <h3>🌅 Dinacharya (Daily Routine)</h3>
+    <table>
+      <tr><th>Activity</th><th>Ayurvedic Term</th></tr>
+      <tr><td>Wake up early (Brahma Muhurta)</td><td>1.5 hrs before sunrise</td></tr>
+      <tr><td>Oil pulling (mouth)</td><td>Gandusha / Kavala</td></tr>
+      <tr><td>Oil massage</td><td>Abhyanga</td></tr>
+      <tr><td>Exercise</td><td>Vyayama</td></tr>
+      <tr><td>Medicated bath</td><td>Snanam</td></tr>
+      <tr><td>Nasal drops</td><td>Nasya</td></tr>
+    </table>
+
+    <h3>🌙 Ritucharya (Seasonal Routine)</h3>
+    <table>
+      <tr><th>Season</th><th>Sanskrit</th><th>Dominant Dosha</th></tr>
+      <tr><td>Vasanta (Spring)</td><td>March-May</td><td>Kapha aggravated</td></tr>
+      <tr><td>Grishma (Summer)</td><td>May-July</td><td>Pitta aggravated</td></tr>
+      <tr><td>Varsha (Monsoon)</td><td>July-Sep</td><td>Vata aggravated</td></tr>
+      <tr><td>Sharad (Autumn)</td><td>Sep-Nov</td><td>Pitta aggravated</td></tr>
+      <tr><td>Hemanta (Early winter)</td><td>Nov-Jan</td><td>Kapha increases</td></tr>
+      <tr><td>Shishira (Late winter)</td><td>Jan-Mar</td><td>Kapha aggravated</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: 6 Ritus</div>
+      <p>Vasanta → Grishma → Varsha → Sharad → Hemanta → Shishira<br>
+      <strong>"Very Good Vehicles Serve High Speed"</strong></p>
+    </div>
+
+    <h3>🍎 Pathyapathya (Wholesome & Unwholesome)</h3>
+    <ul>
+      <li><span class="green">Pathya</span> = Wholesome diet/regimen (beneficial)</li>
+      <li><span class="red">Apathya</span> = Unwholesome diet/regimen (harmful)</li>
+      <li><span class="highlight">Satmya</span> = Habitual/adapted diet (body gets used to)</li>
+    </ul>
+
+    <h3>🧘 Sadvritta (Good Conduct/Ethics)</h3>
+    <ul>
+      <li>Following ethical social conduct for mental health</li>
+      <li>Respecting elders, teachers, gods</li>
+      <li>Non-violence, truth, cleanliness</li>
+      <li>Control of senses = Indriya nigraha</li>
+    </ul>
+
+    <h3>💊 Rasayana (Rejuvenation Therapy)</h3>
+    <ul>
+      <li>Rasayana = anti-aging, immunity boost, longevity therapy</li>
+      <li>Example: Chyawanprash (most famous rasayana)</li>
+      <li>Promotes <span class="green">Ojas</span> (vital essence, immunity)</li>
+      <li>Vajikarana = aphrodisiac therapy (reproductive health)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: DISEASE & TREATMENT -->
+<div id="section4" class="tab-content">
+  <div class="card">
+    <h2>🔴 Section 4: Disease, Diagnosis & Treatment</h2>
+
+    <h3>🔍 Nidana Panchaka (5 factors of Disease)</h3>
+    <div class="ratta">
+      <div class="label">📝 RATTA: "NPSUP" = Nidana-Purvarupa-Rupa-Samprapti-Upashaya</div>
+      <p>
+        1. <strong class="highlight">Nidana</strong> = Causative factors (etiology)<br>
+        2. <strong class="green">Purvarupa</strong> = Premonitory symptoms (before disease fully appears)<br>
+        3. <strong class="blue">Rupa</strong> = Actual signs & symptoms<br>
+        4. <strong class="purple">Samprapti</strong> = Pathogenesis (how disease develops)<br>
+        5. <strong class="red">Upashaya</strong> = Therapeutic test (what relieves it)
+      </p>
+    </div>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "Nana Pakhi Rani Sundar Udti"</div>
+      <p><strong>N</strong>idana → <strong>P</strong>urvarupa → <strong>R</strong>upa → <strong>S</strong>amprapti → <strong>U</strong>pashaya</p>
+    </div>
+
+    <h3>🔬 Trividha Pariksha (3 Types of Examination)</h3>
+    <table>
+      <tr><th>#</th><th>Method</th><th>Meaning</th></tr>
+      <tr><td>1</td><td class="green">Darshana</td><td>Inspection (looking)</td></tr>
+      <tr><td>2</td><td class="highlight">Sparshana</td><td>Palpation (touching)</td></tr>
+      <tr><td>3</td><td class="blue">Prashna</td><td>Interrogation (questioning)</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "DSP" = "Doctor Se Poocho"</div>
+      <p><strong>D</strong>arshana + <strong>S</strong>parshana + <strong>P</strong>rashna</p>
+    </div>
+
+    <h3>🔟 Dashavidha Pariksha (10-fold Examination)</h3>
+    <div class="ratta">
+      <div class="label">📝 PRAKRTI, VIKRITI, SARA, SAMHANANA, SATMYA, SATTVA, AHARA SHAKTI, VYAYAMA SHAKTI, VAYA, DESHA</div>
+      <p style="color:var(--muted); font-size:0.85rem;">10 factors for complete patient examination in Ayurveda</p>
+    </div>
+
+    <h3>💊 Ashtanga Ayurveda (8 Branches)</h3>
+    <table>
+      <tr><th>#</th><th>Branch</th><th>Deals With</th></tr>
+      <tr><td>1</td><td class="green">Kaya Chikitsa</td><td>General medicine (internal)</td></tr>
+      <tr><td>2</td><td class="highlight">Bala Chikitsa</td><td>Pediatrics (Kaumarabhritya)</td></tr>
+      <tr><td>3</td><td class="blue">Graha Chikitsa</td><td>Psychiatry / spiritual diseases</td></tr>
+      <tr><td>4</td><td class="purple">Urdhvanga Chikitsa</td><td>ENT + Eye diseases (above neck)</td></tr>
+      <tr><td>5</td><td class="red">Shalya Tantra</td><td>Surgery (Sushruta's specialty!)</td></tr>
+      <tr><td>6</td><td>Shalakya Tantra</td><td>Ophthalmology + ENT</td></tr>
+      <tr><td>7</td><td class="green">Visha Chikitsa</td><td>Toxicology (poison treatment)</td></tr>
+      <tr><td>8</td><td class="highlight">Rasayana + Vajikarana</td><td>Rejuvenation + Aphrodisiac</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "KB GUS SVR"</div>
+      <p><strong>K</strong>aya → <strong>B</strong>ala → <strong>G</strong>raha → <strong>U</strong>rdhvanga → <strong>S</strong>halya → <strong>S</strong>halakya → <strong>V</strong>isha → <strong>R</strong>asayana/Vajikarana</p>
+    </div>
+
+    <h3>🌿 Panchakarma (5 Purification Therapies)</h3>
+    <table>
+      <tr><th>#</th><th>Karma</th><th>Meaning</th></tr>
+      <tr><td>1</td><td class="green">Vamana</td><td>Therapeutic emesis (vomiting) — for Kapha</td></tr>
+      <tr><td>2</td><td class="highlight">Virechana</td><td>Purgation (laxative) — for Pitta</td></tr>
+      <tr><td>3</td><td class="blue">Basti / Vasti</td><td>Enema — for Vata (most important)</td></tr>
+      <tr><td>4</td><td class="purple">Nasya</td><td>Nasal medication — for head diseases</td></tr>
+      <tr><td>5</td><td class="red">Raktamokshana</td><td>Bloodletting — for blood disorders</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: "VVBNaRa" = "Vamana Virechana Basti Nasya Raktamokshana"</div>
+      <p>Or remember: <strong>V</strong>omit → <strong>V</strong>irechana(Purgation) → <strong>B</strong>asti(Enema) → <strong>N</strong>ose → <strong>R</strong>akta(Blood)</p>
+    </div>
+
+    <h3>🔵 Shadkriyakala (6 Stages of Disease)</h3>
+    <div class="ratta">
+      <div class="label">📝 RATTA: 6 stages</div>
+      <p>1. Sanchaya → 2. Prakopa → 3. Prasara → 4. Sthana samshraya → 5. Vyakti → 6. Bheda<br>
+      <span style="color:var(--muted)">(Accumulation → Aggravation → Spread → Localization → Manifestation → Complication)</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: INSTITUTIONS -->
+<div id="section5" class="tab-content">
+  <div class="card">
+    <h2>🟣 Section 5: Institutions & Examinations</h2>
+
+    <h3>🏛️ Key Institutions in Ayurveda</h3>
+    <table>
+      <tr><th>Institution</th><th>Full Form</th><th>Role</th></tr>
+      <tr><td class="green">CCIM</td><td>Central Council of Indian Medicine</td><td>Statutory body, regulates Ayurveda education & practice</td></tr>
+      <tr><td class="highlight">CCRH</td><td>Central Council for Research in Homeopathy</td><td>Research in Homeopathy</td></tr>
+      <tr><td class="blue">CCRAS</td><td>Central Council for Research in Ayurvedic Sciences</td><td>Research in Ayurveda</td></tr>
+      <tr><td class="purple">AYUSH</td><td>Ministry of Ayurveda, Yoga, Unani, Siddha, Homeopathy</td><td>Central ministry for traditional medicine</td></tr>
+      <tr><td class="red">NIA</td><td>National Institute of Ayurveda</td><td>Premier Ayurveda institute, Jaipur</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: CCIM = MOST IMPORTANT</div>
+      <p>CCIM is under Ministry of AYUSH. It was established under the <strong class="highlight">Indian Medicine Central Council Act 1970</strong>.<br>
+      CCIM sets standards for education + maintains central register of practitioners.</p>
+    </div>
+
+    <h3>📋 CCIM Functions</h3>
+    <ul>
+      <li>Prescribes standards for education in Ayurveda, Unani, Siddha, Naturopathy</li>
+      <li>Maintains Central Register of practitioners</li>
+      <li>Recognizes medical qualifications</li>
+      <li>Regulates conduct of practitioners</li>
+    </ul>
+
+    <h3>🎓 NEET-PA Exam — Key Facts</h3>
+    <table>
+      <tr><th>Parameter</th><th>Detail</th></tr>
+      <tr><td>Full Form</td><td>National Eligibility cum Entrance Test (Pre Ayurveda)</td></tr>
+      <tr><td>Conducted by</td><td>Central Sanskrit University (CSU)</td></tr>
+      <tr><td>Total Questions</td><td>120 MCQs</td></tr>
+      <tr><td>Total Marks</td><td>120</td></tr>
+      <tr><td>Duration</td><td>150 minutes</td></tr>
+      <tr><td>Negative Marking</td><td>NO</td></tr>
+      <tr><td>Qualifying Marks</td><td>60 (50%) for General</td></tr>
+      <tr><td>Mode</td><td>Computer Based Test (CBT)</td></tr>
+    </table>
+
+    <h3>📚 BAMS — Bachelor of Ayurvedic Medicine & Surgery</h3>
+    <table>
+      <tr><th>Detail</th><th>Info</th></tr>
+      <tr><td>Duration</td><td>5.5 years (4.5 yrs + 1 yr internship)</td></tr>
+      <tr><td>Admission via</td><td>NEET-PA</td></tr>
+      <tr><td>Regulated by</td><td>CCIM under Ministry of AYUSH</td></tr>
+      <tr><td>Key subjects</td><td>Ayurveda Siddhanta, Kriya Sharira, Dravyaguna, Roga Nidana, etc.</td></tr>
+    </table>
+
+    <h3>🏥 Important Ayurvedic Research Institutes</h3>
+    <table>
+      <tr><th>Institute</th><th>Location</th></tr>
+      <tr><td class="green">NIA (National Institute of Ayurveda)</td><td>Jaipur, Rajasthan</td></tr>
+      <tr><td class="highlight">AIIA (All India Institute of Ayurveda)</td><td>New Delhi</td></tr>
+      <tr><td class="blue">ITRA (Institute of Teaching & Research in Ayurveda)</td><td>Jamnagar, Gujarat</td></tr>
+      <tr><td class="purple">GAU (Gujarat Ayurved University)</td><td>Jamnagar, Gujarat</td></tr>
+    </table>
+    <div class="trick-box">
+      <div class="label">🧠 TRICK: Jamnagar = ITRA + GAU = Ayurveda capital of India</div>
+      <p>Jamnagar is most important city for Ayurveda education in India!<br>
+      AIIA = Delhi = Central Government's flagship Ayurveda hospital</p>
+    </div>
+  </div>
+</div>
+
+<!-- PRACTICE MCQs -->
+<div id="mcq" class="tab-content">
+  <div id="score-display" style="display:none;"></div>
+  <div class="stats">
+    <div class="stat-box"><div class="val" id="answered-count">0</div><div class="lbl">Answered</div></div>
+    <div class="stat-box"><div class="val" id="correct-count">0</div><div class="lbl">Correct</div></div>
+    <div class="stat-box"><div class="val" id="wrong-count">0</div><div class="lbl">Wrong</div></div>
+    <div class="stat-box"><div class="val" id="score-pct">0%</div><div class="lbl">Score</div></div>
+  </div>
+  <div class="score-bar"><div class="score-fill" id="score-bar-fill" style="width:0%"></div></div>
+
+  <div id="mcq-container"></div>
+  <br>
+  <button class="reset-btn" onclick="resetMCQ()">🔄 Reset All MCQs</button>
+</div>
+
+<script>
+const questions = [
+  {
+    q: "What does the word 'Āyu' mean in Ayurveda?",
+    opts: ["Medicine", "Life", "Knowledge", "Health"],
+    ans: 1,
+    exp: "Āyu = Life. Ayurveda = Āyu + Veda = Science/Knowledge of Life. Āyu consists of Sharira + Indriya + Sattva + Atma."
+  },
+  {
+    q: "Which of the following is NOT a synonym of Āyu?",
+    opts: ["Dhāri", "Jīvita", "Nityaga", "Rogamukta"],
+    ans: 3,
+    exp: "The 4 synonyms of Āyu are: Dhāri, Jīvita, Nityaga, and Anubandha. 'Rogamukta' (disease-free) is NOT a synonym of Āyu."
+  },
+  {
+    q: "Ayurveda is an Upaveda of which Veda?",
+    opts: ["Rigveda", "Samaveda", "Yajurveda", "Atharvaveda"],
+    ans: 3,
+    exp: "Ayurveda is considered an Upaveda (subsidiary Veda) of the Atharvaveda. The Atharvaveda contains hymns related to healing and medicine."
+  },
+  {
+    q: "Who is known as the 'Father of Surgery' in Ayurveda?",
+    opts: ["Charaka", "Vagbhata", "Sushruta", "Dhanvantari"],
+    ans: 2,
+    exp: "Sushruta, who lived in Kashi (Varanasi), is known as the Father of Surgery. He wrote the Sushruta Samhita which describes detailed surgical procedures."
+  },
+  {
+    q: "BrihatTrayi (Greater Triad) of Ayurveda does NOT include:",
+    opts: ["Charaka Samhita", "Sushruta Samhita", "AshtangaHridaya", "MadhavaNidana"],
+    ans: 3,
+    exp: "BrihatTrayi = Charaka Samhita + Sushruta Samhita + AshtangaHridaya. MadhavaNidana is part of LaghuTrayi (Lesser Triad), written by Madhavakara."
+  },
+  {
+    q: "LaghuTrayi includes which of the following?",
+    opts: ["Charaka Samhita", "Bhavaprakasha", "AshtangaSangraha", "Sushruta Samhita"],
+    ans: 1,
+    exp: "LaghuTrayi = MadhavaNidana (Madhavakara) + Bhavaprakasha (Bhavamishra) + Sharngadhara Samhita (Sharngadhara). Bhavaprakasha is the correct answer."
+  },
+  {
+    q: "According to Sankhya philosophy used in Ayurveda, total number of Tattvas is:",
+    opts: ["21", "22", "24", "25"],
+    ans: 2,
+    exp: "24 Tattvas: Prakriti(1) + Mahat(1) + Ahankara(1) + Tanmatras(5) + Mahabhutas(5) + Jnanendriyas(5) + Karmendriyas(5) + Manas(1) = 24."
+  },
+  {
+    q: "Which Panchamahabhuta is associated with the sense of smell (Gandha)?",
+    opts: ["Jala", "Agni", "Prithvi", "Akasha"],
+    ans: 2,
+    exp: "Prithvi (Earth) → Gandha (smell). Remember: Each element has one specific sense: Prithvi=Gandha, Jala=Rasa, Agni=Rupa, Vayu=Sparsha, Akasha=Shabda."
+  },
+  {
+    q: "Vata Dosha is composed of which two Mahabhutas?",
+    opts: ["Prithvi + Jala", "Agni + Jala", "Akasha + Vayu", "Prithvi + Agni"],
+    ans: 2,
+    exp: "Vata = Akasha (Space) + Vayu (Air). Pitta = Agni + Jala. Kapha = Prithvi + Jala. This is a frequently asked question!"
+  },
+  {
+    q: "Which Dosha is primarily responsible for digestion and metabolism?",
+    opts: ["Vata", "Pitta", "Kapha", "All three equally"],
+    ans: 1,
+    exp: "Pitta Dosha governs digestion, heat, metabolism, and transformation. It is associated with Agni (fire) and is located mainly in the liver and small intestine."
+  },
+  {
+    q: "How many types of Rasa (tastes) are described in Ayurveda?",
+    opts: ["4", "5", "6", "7"],
+    ans: 2,
+    exp: "Shad Rasa = 6 tastes: Madhura (sweet), Amla (sour), Lavana (salty), Katu (pungent), Tikta (bitter), Kashaya (astringent)."
+  },
+  {
+    q: "Which taste (Rasa) is described as 'Kashaya'?",
+    opts: ["Sweet", "Sour", "Pungent", "Astringent"],
+    ans: 3,
+    exp: "Kashaya = Astringent taste. Examples: unripe banana, tea, pomegranate peel. Order: Madhura, Amla, Lavana, Katu, Tikta, Kashaya."
+  },
+  {
+    q: "Panchakarma therapy 'Vamana' is specifically indicated for which Dosha?",
+    opts: ["Vata", "Pitta", "Kapha", "All doshas"],
+    ans: 2,
+    exp: "Vamana (therapeutic emesis) is specifically for Kapha disorders. Virechana is for Pitta. Basti/Vasti is for Vata (considered the most important Panchakarma)."
+  },
+  {
+    q: "What does 'Nidana Panchaka' mean in Ayurvedic diagnosis?",
+    opts: ["5 types of treatment", "5 factors of disease examination", "5 types of doshas", "5 fundamental principles"],
+    ans: 1,
+    exp: "Nidana Panchaka = 5-fold examination of disease: Nidana (causation), Purvarupa (premonitory symptoms), Rupa (signs/symptoms), Samprapti (pathogenesis), Upashaya (therapeutic test)."
+  },
+  {
+    q: "Which statutory body regulates Ayurvedic medical education in India?",
+    opts: ["AYUSH Ministry", "CCIM", "CCRAS", "NIA"],
+    ans: 1,
+    exp: "CCIM (Central Council of Indian Medicine) is the statutory body established under Indian Medicine Central Council Act 1970 that regulates Ayurveda, Unani, Siddha, and Naturopathy education."
+  },
+  {
+    q: "Where is the National Institute of Ayurveda (NIA) located?",
+    opts: ["New Delhi", "Jamnagar", "Jaipur", "Varanasi"],
+    ans: 2,
+    exp: "National Institute of Ayurveda (NIA) is located in Jaipur, Rajasthan. AIIA (All India Institute of Ayurveda) is in New Delhi. ITRA is in Jamnagar, Gujarat."
+  },
+  {
+    q: "Vagbhata, one of the 3 principal Acharyas, belonged to which region?",
+    opts: ["Kashmir", "Varanasi", "Pataliputra", "Sindhu (Sindh)"],
+    ans: 3,
+    exp: "Vagbhata was from Sindhu (Sindh) region. He wrote both AshtangaSangraha and AshtangaHridaya. Charaka was from Kashmir. Sushruta was from Kashi (Varanasi)."
+  },
+  {
+    q: "Which of the following is the 'most important' among Panchakarma therapies according to Ayurveda?",
+    opts: ["Vamana", "Virechana", "Basti", "Nasya"],
+    ans: 2,
+    exp: "Basti (Vasti/Enema) is considered the most important Panchakarma therapy as it treats Vata disorders. Vata is considered the most important dosha as it governs all movements."
+  },
+  {
+    q: "8 Branches of Ayurveda is known as:",
+    opts: ["Ashtanga Ayurveda", "Ashtamahabhuta", "Ashtavidha Pariksha", "Ashtasthana Pariksha"],
+    ans: 0,
+    exp: "Ashtanga Ayurveda = 8 branches: Kaya Chikitsa, Bala Chikitsa (Kaumarabhritya), Graha Chikitsa, Urdhvanga, Shalya Tantra, Shalakya Tantra, Visha Chikitsa, Rasayana+Vajikarana."
+  },
+  {
+    q: "Charaka Samhita originally written by Agnivesha was revised by Charaka. Which king was Charaka's royal physician?",
+    opts: ["Chandragupta Maurya", "Ashoka", "Kanishka", "Vikramaditya"],
+    ans: 2,
+    exp: "Charaka served as the royal physician of King Kanishka (Kushan dynasty). He revised the AgniveshaTantra (written by Agnivesha under guidance of Punarvasu Atreya) into Charaka Samhita."
+  }
+];
+
+let answered = new Array(questions.length).fill(false);
+let correct = 0;
+let wrong = 0;
+
+function buildMCQs() {
+  const container = document.getElementById('mcq-container');
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const div = document.createElement('div');
+    div.className = 'mcq-card';
+    div.id = 'mcq-' + i;
+    div.innerHTML = `
+      <div class="qnum">Q${i+1} of ${questions.length}</div>
+      <div class="question">${q.q}</div>
+      <div class="options" id="opts-${i}">
+        ${q.opts.map((opt, j) => `<button class="opt-btn" onclick="answer(${i}, ${j})">${String.fromCharCode(65+j)}. ${opt}</button>`).join('')}
+      </div>
+      <div class="explanation" id="exp-${i}">💡 <strong>Explanation:</strong> ${q.exp}</div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+function answer(qi, selected) {
+  if (answered[qi]) return;
+  answered[qi] = true;
+  const opts = document.querySelectorAll(`#opts-${qi} .opt-btn`);
+  const exp = document.getElementById(`exp-${qi}`);
+  opts.forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === questions[qi].ans) btn.classList.add('reveal-correct');
+    if (j === selected && selected !== questions[qi].ans) btn.classList.add('wrong');
+    if (j === selected && selected === questions[qi].ans) btn.classList.add('correct');
+  });
+  exp.classList.add('show');
+  if (selected === questions[qi].ans) correct++;
+  else wrong++;
+  updateStats();
+}
+
+function updateStats() {
+  const answeredCount = answered.filter(Boolean).length;
+  document.getElementById('answered-count').textContent = answeredCount;
+  document.getElementById('correct-count').textContent = correct;
+  document.getElementById('wrong-count').textContent = wrong;
+  const pct = answeredCount > 0 ? Math.round(correct/answeredCount*100) : 0;
+  document.getElementById('score-pct').textContent = pct + '%';
+  document.getElementById('score-bar-fill').style.width = pct + '%';
+  if (answeredCount === questions.length) {
+    const sd = document.getElementById('score-display');
+    sd.style.display = 'block';
+    sd.innerHTML = `🏆 Final Score: ${correct}/${questions.length} (${pct}%) ${pct >= 70 ? '✅ Excellent!' : pct >= 50 ? '🆗 Good work!' : '📚 Revise again!'}`;
+  }
+}
+
+function resetMCQ() {
+  answered = new Array(questions.length).fill(false);
+  correct = 0; wrong = 0;
+  document.getElementById('score-display').style.display = 'none';
+  updateStats();
+  buildMCQs();
+}
+
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+buildMCQs();
+</script>
+</body>
+</html>
+
+</body></html>
